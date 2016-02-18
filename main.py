@@ -77,7 +77,7 @@ class Object:
         if libtcod.map_is_in_fov(fov_map, self.x, self.y):
             # set the color and then draw the character that represents this object at its position
             libtcod.console_set_default_foreground(con, self.color)
-            libtcod.console_put_char(con, self.x, self.y, self.char, libtcod.BKGND_NONE)
+            libtcod.console_put_char(con, self.x, self.y, '#', libtcod.BKGND_NONE)
 
     def clear(self):
         # erase the character that represents this object

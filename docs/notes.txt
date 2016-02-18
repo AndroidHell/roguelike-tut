@@ -1,0 +1,21 @@
+######## To make # for walls instead of blocks ########
+
+You want the walls to be displayed by "#" on the screen ? This is to be done in the Python code. This is some code I have, you should have something similar if you're following the tutorial :
+
+def draw(self):
+    ltc.console_set_char_background(gv.con, self.x, self.y, self.col, ltc.BKGND_SET)
+
+This is to draw my walls. As you can see, I just set a char background, but don't actually draw any character (which gives me a colored block, of the background color. It basically draws no character, then changes the background of the block). If you want to have a character displayed, look at how your creatures are displayed for example :
+
+def draw(self):
+    ltc.console_set_default_foreground(gv.con, self.color)
+    ltc.console_put_char(gv.con, self.x, self.y, self.char, ltc.BKGND_NONE)
+
+Here you can see, for a creature, you do a "console_put_char()", which draws a character. So that's what you need, for example, put that into your drawing method for your walls :
+
+def draw(self):
+    tc.console_set_default_foreground(gv.con, ltc.Color(255, 255, 255)
+    ltc.console_put_char(gv.con, self.x, self.y, '#', ltc.BKGND_NONE)
+    ltc.console_set_char_background(gv.con, self.x, self.y, ltc.Color(0, 0, 0), ltc.BKGND_SET)
+
+This should draw you a white '#' for each wall, with a black background (not sure about this last part, because of the ltc.BKGND_NONE, you'd have to check that a bit and check the documentation, maybe you have to put something else at the end of put_char).
